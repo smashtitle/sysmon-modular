@@ -1,4 +1,10 @@
+<!--  
+Based on Olaf Hartong's sysmonconfig-research, plus additional events that have been added
+to Sysmon since his last commit in October 2022.
+-->
+
 <Sysmon schemaversion="4.90">
+
   <HashAlgorithms>*</HashAlgorithms>
   <CheckRevocation/>
   <DnsLookup>False</DnsLookup>
@@ -12,7 +18,6 @@
     </ProcessCreate>
 
     <FileCreateTime onmatch="exclude"/>
-
     <NetworkConnect onmatch="exclude"/>
 
     <ProcessTerminate onmatch="exclude">
@@ -29,7 +34,6 @@
     </ImageLoad>
 
     <CreateRemoteThread onmatch="exclude"/>
-
     <RawAccessRead onmatch="exclude"/>
 
     <ProcessAccess onmatch="exclude">
@@ -61,27 +65,19 @@
       <EventType condition="is">ConnectPipe</EventType>
     </PipeEvent>
 
-    <WmiEvent onmatch="include">
+    <WmiEvent onmatch="exclude">
       <EventType condition="is">Filter</EventType>
       <EventType condition="is">Consumer</EventType>
       <EventType condition="is">FilterToConsumerBinding</EventType>
     </WmiEvent>
 
     <DnsQuery onmatch="exclude"/>
-
     <FileDelete onmatch="include"/>
-
     <ClipboardChange onmatch="exclude"/>
-
     <ProcessTampering onmatch="exclude"/>
-
     <FileDeleteDetected onmatch="exclude"/>
-
     <FileBlockExecutable onmatch="exclude"/>
-
     <FileBlockShredding onmatch="exclude"/>
-
-    <SysmonLog onmatch="exclude"/>
 
   </EventFiltering>
 </Sysmon>
