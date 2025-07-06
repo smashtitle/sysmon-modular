@@ -1,6 +1,6 @@
 ﻿<!--                   	NOTICE : This is a modified, RESEARCH ONLY configuration with extreme verbosity originally created             		-->
 <!--                    originally created by Olaf Hartong. The log volume expected from this file is very high, DO NOT USE IN PRODUCTION!      -->
-<Sysmon schemaversion="4.83">
+<Sysmon schemaversion="4.90">
   <HashAlgorithms>*</HashAlgorithms>
   <CheckRevocation />
   <DnsLookup>False</DnsLookup>
