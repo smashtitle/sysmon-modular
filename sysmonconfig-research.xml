@@ -1,10 +1,15 @@
-﻿<!--                   	NOTICE : This is a modified, RESEARCH ONLY configuration with extreme verbosity originally created             		-->
-<!--                    originally created by Olaf Hartong. The log volume expected from this file is very high, DO NOT USE IN PRODUCTION!      -->
+<!--
+     RESEARCH-ONLY Sysmon configuration.
+     Source: Olaf Hartong (modified for schema-4.90 compliance).
+     WARNING: Generates a very high volume of logs.  DO NOT USE IN PRODUCTION.
+-->
 <Sysmon schemaversion="4.90">
+
   <HashAlgorithms>*</HashAlgorithms>
-  <CheckRevocation />
+  <CheckRevocation/>
   <DnsLookup>False</DnsLookup>
   <ArchiveDirectory>Research</ArchiveDirectory>
+
   <EventFiltering>
     <ProcessCreate onmatch="exclude">
       <Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
@@ -25,8 +30,8 @@
     <CreateRemoteThread onmatch="exclude"/>
     <RawAccessRead onmatch="exclude"/>
     <ProcessAccess onmatch="exclude">
-      <SourceImage condition="is">C:\windows\system32\csrss.exe</SourceImage>
-      <SourceImage condition="is">C:\windows\system32\lsass.exe</SourceImage>
+      <SourceImage condition="is">C:\Windows\System32\csrss.exe</SourceImage>
+      <SourceImage condition="is">C:\Windows\System32\lsass.exe</SourceImage>
       <SourceImage condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</SourceImage>
       <SourceImage condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</SourceImage>
     </ProcessAccess>
@@ -34,42 +39,32 @@
     <RegistryEvent onmatch="exclude">
       <Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
       <Image condition="is">C:\Program Files\Microsoft Monitoring Agent\Agent\HealthService.exe</Image>
-      <Image condition="is">C:\tools\sysinternals\Sysmon64.exe</Image>
-      <Image condition="is">C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
-      <Image condition="is">C:\windows\Sysmon64.exe</Image>
+      <Image condition="is">C:\Tools\Sysinternals\Sysmon64.exe</Image>
+      <Image condition="is">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Image>
+      <Image condition="is">C:\Windows\Sysmon64.exe</Image>
       <Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
+      <RegistryObjectRenamed onmatch="exclude"/>
     </RegistryEvent>
     <FileCreateStreamHash onmatch="exclude"/>
     <PipeEvent onmatch="exclude">
       <Image condition="begin with">C:\Program Files\SplunkUniversalForwarder\bin\</Image>
       <Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\Agent\</Image>
       <Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
-    </PipeEvent>
-    <RuleGroup name="Research" groupRelation="or">
-      <WmiEvent onmatch="exclude"/>
-      <DnsQuery onmatch="exclude"/>
-      <FileDelete onmatch="include"/>
-      <ClipboardChange onmatch="exclude"/>
-      <ProcessTampering onmatch="exclude"/>
-      <FileDeleteDetected onmatch="exclude"/>
-      <FileBlockExecutable onmatch="exclude"/>
-      <FileBlockShredding onmatch="exclude"/>
-      <WmiEventFilter onmatch="include"/>
-      <WmiEventConsumer onmatch="include"/>
-      <WmiEventConsumerToFilter onmatch="include"/>
-      <SysmonLog onmatch="exclude"/>
+      <PipeCreated   onmatch="exclude"/>
       <PipeConnected onmatch="exclude"/>
-      <PipeCreated onmatch="exclude"/>
-      <RegistryObjectRenamed onmatch="exclude"/>
-      <FileExecutableDetected onmatch="exclude"/>
-      <FileShreddingDetected onmatch="exclude"/>
-      <FileExecutableBlocked onmatch="exclude"/>
-      <FileShreddingBlocked onmatch="exclude"/>
-      <DeviceChangeDetected onmatch="exclude"/>
-      <FileIntegrityHash onmatch="exclude"/>
-      <HostImageLoad onmatch="exclude"/>
-      <ImageLoadSignatureState onmatch="exclude"/>
-      <ServiceStateChange onmatch="exclude"/>
-    </RuleGroup>
+    </PipeEvent>
+    <WmiEvent onmatch="exclude">
+      <WmiEventFilter           onmatch="include"/>
+      <WmiEventConsumer         onmatch="include"/>
+      <WmiEventConsumerToFilter onmatch="include"/>
+    </WmiEvent>
+    <DnsQuery onmatch="exclude"/>
+    <FileDelete onmatch="include"/>
+    <ClipboardChange onmatch="exclude"/>
+    <ProcessTampering onmatch="exclude"/>
+    <FileDeleteDetected onmatch="exclude"/>
+    <FileBlockExecutable onmatch="exclude"/>
+    <FileBlockShredding onmatch="exclude"/>
+    <SysmonLog onmatch="exclude"/>
   </EventFiltering>
 </Sysmon>
