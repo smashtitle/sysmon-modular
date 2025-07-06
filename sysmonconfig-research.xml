@@ -45,29 +45,31 @@
       <Image condition="begin with">C:\Program Files\Microsoft Monitoring Agent\Agent\</Image>
       <Image condition="begin with">C:\WindowsAzure\GuestAgent</Image>
     </PipeEvent>
-    <WmiEvent onmatch="exclude"/>
-    <DnsQuery onmatch="exclude"/>
-    <FileDelete onmatch="include"/>
-    <ClipboardChange onmatch="exclude"/>
-    <ProcessTampering onmatch="exclude"/>
-    <FileDeleteDetected onmatch="exclude"/>
-    <FileBlockExecutable onmatch="exclude"/>
-    <FileBlockShredding onmatch="exclude"/>
-    <WmiEventFilter onmatch="include"/>
-    <WmiEventConsumer onmatch="include"/>
-    <WmiEventConsumerToFilter onmatch="include"/>
-    <SysmonLog onmatch="exclude"/>
-    <PipeConnected onmatch="exclude"/>
-    <PipeCreated onmatch="exclude"/>
-    <RegistryObjectRenamed onmatch="exclude"/>
-    <FileExecutableDetected onmatch="exclude"/>
-    <FileShreddingDetected onmatch="exclude"/>
-    <FileExecutableBlocked onmatch="exclude"/>
-    <FileShreddingBlocked onmatch="exclude"/>
-    <DeviceChangeDetected onmatch="exclude"/>
-    <FileIntegrityHash onmatch="exclude"/>
-    <HostImageLoad onmatch="exclude"/>
-    <ImageLoadSignatureState onmatch="exclude"/>
-    <ServiceStateChange onmatch="exclude"/>
+    <RuleGroup name="Research" groupRelation="or">
+      <WmiEvent onmatch="exclude"/>
+      <DnsQuery onmatch="exclude"/>
+      <FileDelete onmatch="include"/>
+      <ClipboardChange onmatch="exclude"/>
+      <ProcessTampering onmatch="exclude"/>
+      <FileDeleteDetected onmatch="exclude"/>
+      <FileBlockExecutable onmatch="exclude"/>
+      <FileBlockShredding onmatch="exclude"/>
+      <WmiEventFilter onmatch="include"/>
+      <WmiEventConsumer onmatch="include"/>
+      <WmiEventConsumerToFilter onmatch="include"/>
+      <SysmonLog onmatch="exclude"/>
+      <PipeConnected onmatch="exclude"/>
+      <PipeCreated onmatch="exclude"/>
+      <RegistryObjectRenamed onmatch="exclude"/>
+      <FileExecutableDetected onmatch="exclude"/>
+      <FileShreddingDetected onmatch="exclude"/>
+      <FileExecutableBlocked onmatch="exclude"/>
+      <FileShreddingBlocked onmatch="exclude"/>
+      <DeviceChangeDetected onmatch="exclude"/>
+      <FileIntegrityHash onmatch="exclude"/>
+      <HostImageLoad onmatch="exclude"/>
+      <ImageLoadSignatureState onmatch="exclude"/>
+      <ServiceStateChange onmatch="exclude"/>
+    </RuleGroup>
   </EventFiltering>
 </Sysmon>
